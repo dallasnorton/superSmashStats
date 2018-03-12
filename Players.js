@@ -40,22 +40,23 @@ export default class Players extends React.Component {
       });
   };
 
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
   render() {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Select Winner</Title>
-          </Body>
-        </Header>
         <List>
           <FlatList 
             data={this.state.data}
             renderItem={({item}) => 
               <Player
                 avatar={{ uri: item.picture.thumbnail }}
-                name={item.name.first}
-              />}
+                name={item.name}
+                navigation={this.props.navigation}
+              />
+            }
             keyExtractor={item => item.email}
           />
         </List>
