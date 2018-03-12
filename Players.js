@@ -40,10 +40,6 @@ export default class Players extends React.Component {
       });
   };
 
-  _onPressButton() {
-    Alert.alert('You tapped the button!')
-  }
-
   render() {
     return (
       <Container>

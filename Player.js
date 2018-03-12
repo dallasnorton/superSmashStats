@@ -1,12 +1,9 @@
 import React from 'react';
-import {Alert, Button} from 'react-native';
-import { Content, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import {View} from 'react-native';
+import { ListItem, Left, Right, Thumbnail, Text } from 'native-base';
+import PlayerActionButtons from './PlayerActionButtons';
 
 export default class Player extends React.Component {
-  _onPressButton() {
-    Alert.alert('You tapped the button!')
-  }
-
   render() {
     return (
       <ListItem>
@@ -15,15 +12,11 @@ export default class Player extends React.Component {
           <Text>{this.props.name.first}</Text>
         </Left>
         <Right>
-          <Button 
-            transparent
-            onPress={() => this.props.navigation.navigate('PlayerDetails', {
-              name: this.props.name,
-              avatar: this.props.avatar
-            })}
-            title="View"
-            >
-          </Button>
+          <PlayerActionButtons
+            navigation={this.props.navigation}
+            name={this.props.name}
+            avatar={this.props.avatar}
+          />
         </Right>
       </ListItem>
     );
