@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Container, List, Body } from 'native-base';
 import Character from './Character';
 
@@ -67,20 +67,23 @@ const smashCharacters = [
 export default class CharacterList extends React.Component {
   render () {
     return (
-      <View>
-        <List>
-          <FlatList 
-            data={smashCharacters}
-            renderItem={({item}) => 
-              <Character
-                avatar={item.avatar}
-                name={item.name}
-              />
-            }
-            keyExtractor={item => item.name}
-          />
-        </List>
-      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        {smashCharacters.map((char, index) => {
+          return <Character
+            key={char.name}
+            avatar={char.avatar}
+            name={char.name}
+          />;
+        })}
+      </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
+  }
+});
