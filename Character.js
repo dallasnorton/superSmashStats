@@ -7,13 +7,13 @@ export default class Character extends React.Component {
   render() {
     return (
       <TouchableHighlight 
-        onPress={this.props.onSelection} 
+        onPress={this.props.onCharacterSelected} 
         style={styles.container}
         underlayColor={'transparent'}
       >
         <View>
           <Image source={this.props.avatar} resizeMode="contain" style={styles.stretch}/>
-          {this.props.selected === this.props.name ? <Icon name='ios-checkmark-circle' style={styles.selectedIcon} /> : null}
+          {this.props.selected ? <Icon name='ios-checkmark-circle' style={styles.selectedIcon} /> : null}
         </View>
       </TouchableHighlight>
     );

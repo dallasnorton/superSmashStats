@@ -67,11 +67,6 @@ const smashCharacters = [
 export default class CharacterList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {characterSelected: null};
-  }
-
-  onCharacterSelected = (item) => {
-    this.setState({characterSelected: item.name});
   }
 
   render () {
@@ -82,8 +77,8 @@ export default class CharacterList extends React.Component {
             key={char.name}
             avatar={char.avatar}
             name={char.name}
-            onSelection={() => this.onCharacterSelected(char)}
-            selected={this.state.characterSelected}
+            onCharacterSelected={() => this.props.onSelection(char)}
+            selected={this.props.selectedCharacter === char.name}
           />
         )}
       </ScrollView>
