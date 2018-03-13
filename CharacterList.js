@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, Text, StyleSheet, ScrollView } from 'react-native';
+import { FlatList, View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
 import { Container, List, Body } from 'native-base';
 import Character from './Character';
 
@@ -65,16 +65,27 @@ const smashCharacters = [
 ];
 
 export default class CharacterList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {characterSelected: null};
+  }
+
+  onCharacterSelected = (item) => {
+    this.setState({characterSelected: item.name});
+  }
+
   render () {
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {smashCharacters.map((char, index) => {
-          return <Character
+        {smashCharacters.map(char => 
+          <Character
             key={char.name}
             avatar={char.avatar}
             name={char.name}
-          />;
-        })}
+            onSelection={() => this.onCharacterSelected(char)}
+            selected={this.state.characterSelected}
+          />
+        )}
       </ScrollView>
     );
   }
