@@ -4,15 +4,6 @@ import {Header, Button, Left, Right, Body} from 'native-base';
 import CharacterList from './CharacterList';
 
 class HeaderComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {characterSelected: null};
-  }
-
-  onCharacterSelected = (item) => {
-    this.setState({characterSelected: item.name});
-  }
-
   render() {
     return (
       <Header>
@@ -25,7 +16,7 @@ class HeaderComponent extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Text>{this.state.characterSelected}</Text>
+          <Text>{this.props.characterSelected}</Text>
         </Body>
         <Right>
           <Button 
@@ -41,15 +32,25 @@ class HeaderComponent extends React.Component {
 }
 
 export default class CharacterSelectionModalScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {characterSelected: null};
+  }
+
+  onCharacterSelected = (item) => {
+    this.setState({characterSelected: item.name});
+  }
+
   render() {
     return (
       <View>
         <HeaderComponent
           navigation={this.props.navigation}
+          characterSelected={this.state.characterSelected}
         />
         <CharacterList 
           style={styles.container} 
-          onSelection={() => this.onCharacterSelected(char)}
+          onSelection={this.onCharacterSelected}
           selectedCharacter={this.state.characterSelected}
         />
       </View>
