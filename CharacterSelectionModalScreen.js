@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import { Container, Button, Title, Footer, FooterTab } from "native-base";
 import CharacterList from "./CharacterList";
 import CharacterSelectionHeader from "./CharacterSelectionHeader";
+// import SearchBar from 'react-native-search-bar'
 
 class SubmitButton extends React.Component {
   render() {
@@ -32,6 +33,10 @@ export default class CharacterSelectionModalScreen extends React.Component {
     }
   };
 
+  textChange = change => {
+    console.log("change", change);
+  };
+
   render() {
     return (
       <Container>
@@ -39,6 +44,13 @@ export default class CharacterSelectionModalScreen extends React.Component {
           navigation={this.props.navigation}
           characterSelected={this.state.characterSelected}
         />
+        {/* <SearchBar
+          ref='searchBar'
+          placeholder='Search'
+          onChangeText={this.textChange}
+          onSearchButtonPress={this.textChange}
+          onCancelButtonPress={this.textChange}
+        /> */}
         <CharacterList
           style={styles.container}
           onSelection={this.onCharacterSelected}
