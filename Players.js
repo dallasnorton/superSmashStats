@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, FlatList } from 'react-native';
-import { Container, Header, List, Title, Body } from 'native-base';
-import Player from './Player';
+import React from "react";
+import { StyleSheet, FlatList } from "react-native";
+import { Container, Header, List, Title, Body } from "native-base";
+import Player from "./Player";
 
 export default class Players extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export default class Players extends React.Component {
       page: 1,
       seed: 1,
       error: null,
-      refreshing: false,
+      refreshing: false
     };
   }
 
@@ -44,15 +44,15 @@ export default class Players extends React.Component {
     return (
       <Container>
         <List>
-          <FlatList 
+          <FlatList
             data={this.state.data}
-            renderItem={({item}) => 
+            renderItem={({ item }) => (
               <Player
                 avatar={{ uri: item.picture.thumbnail }}
                 name={item.name}
                 navigation={this.props.navigation}
               />
-            }
+            )}
             keyExtractor={item => item.email}
           />
         </List>
@@ -64,9 +64,9 @@ export default class Players extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-  },
+    width: "100%",
+    backgroundColor: "#fff",
+    alignItems: "flex-start",
+    justifyContent: "flex-start"
+  }
 });

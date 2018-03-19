@@ -1,7 +1,20 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Header, Left, Right, Body, Form, Item, Label, Input, Button, Title, Content } from 'native-base';
-import BackButton from './BackButton';
+import React from "react";
+import { StyleSheet } from "react-native";
+import {
+  Container,
+  Header,
+  Left,
+  Right,
+  Body,
+  Form,
+  Item,
+  Label,
+  Input,
+  Button,
+  Title,
+  Content
+} from "native-base";
+import BackButton from "./BackButton";
 
 class NewPlayerForm extends React.Component {
   render() {
@@ -25,7 +38,7 @@ class SubmitButton extends React.Component {
     return (
       <Content padder>
         <Button full style={styles.buttonContainer}>
-          <Title style={{color: '#fff'}}>Submit</Title>
+          <Title style={{ color: "#fff" }}>Submit</Title>
         </Button>
       </Content>
     );
@@ -35,19 +48,19 @@ class SubmitButton extends React.Component {
 export default class CreateUserScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = { text: "" };
   }
   render() {
     return (
       <Container>
         <Header>
           <Left>
-            <BackButton navigation={this.props.navigation}/>
+            <BackButton navigation={this.props.navigation} />
           </Left>
           <Body>
             <Title>Add Player</Title>
           </Body>
-          <Right/>
+          <Right />
         </Header>
         <NewPlayerForm />
         <SubmitButton />
@@ -59,5 +72,5 @@ export default class CreateUserScreen extends React.Component {
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10
-  },
+  }
 });
