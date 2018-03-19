@@ -1,32 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Header, Button, Left, Right, Body} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Container, Button, Title, Footer, FooterTab } from 'native-base';
 import CharacterList from './CharacterList';
+import CharacterSelectionHeader from './CharacterSelectionHeader';
 
-class HeaderComponent extends React.Component {
+class SubmitButton extends React.Component {
   render() {
     return (
-      <Header>
-        <Left>
-          <Button 
-            transparent
-            onPress={() => this.props.navigation.goBack()}
-          >
-            <Text>Cancel</Text>
+      <Footer>
+        <FooterTab>
+          <Button full primary>
+            <Title style={{color: '#fff'}}>Submit</Title>
           </Button>
-        </Left>
-        <Body>
-          <Text>{this.props.characterSelected}</Text>
-        </Body>
-        <Right>
-          <Button 
-            transparent
-            onPress={() => this.props.navigation.goBack()}
-          >
-            <Text>Submit</Text>
-          </Button>
-        </Right>
-      </Header>
+        </FooterTab>
+      </Footer>
     );
   }
 }
@@ -38,13 +25,17 @@ export default class CharacterSelectionModalScreen extends React.Component {
   }
 
   onCharacterSelected = (item) => {
-    this.setState({characterSelected: item.name});
+    if(this.state.characterSelected === item.name) {
+      this.setState({characterSelected: null});
+    } else {
+      this.setState({characterSelected: item.name});
+    }
   }
 
   render() {
     return (
-      <View>
-        <HeaderComponent
+      <Container>
+        <CharacterSelectionHeader
           navigation={this.props.navigation}
           characterSelected={this.state.characterSelected}
         />
@@ -53,7 +44,8 @@ export default class CharacterSelectionModalScreen extends React.Component {
           onSelection={this.onCharacterSelected}
           selectedCharacter={this.state.characterSelected}
         />
-      </View>
+        {this.state.characterSelected ? <SubmitButton /> : null}
+      </Container>
     );
   }
 }
