@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Thumbnail, Container, Title, Icon, Text } from "native-base";
+import { connect } from "react-redux";
 // import Camera from 'react-native-camera';
 
 class WinCount extends React.Component {
@@ -47,7 +48,7 @@ class AvatarPlaceHolder extends React.Component {
   }
 }
 
-export default class PlayerProfile extends React.Component {
+class PlayerProfile extends React.Component {
   render() {
     return (
       <Container style={styles.horizontalCenter}>
@@ -99,3 +100,5 @@ const styles = StyleSheet.create({
     margin: 40
   }
 });
+
+export default connect(({ winsByUser }) => ({ winsByUser }))(PlayerProfile);

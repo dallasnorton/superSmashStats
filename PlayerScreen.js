@@ -15,14 +15,6 @@ import BackButton from "./BackButton";
 import PlayerProfile from "./PlayerProfile";
 
 export default class PlayerScreen extends React.Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { params } = navigation.state;
-
-  //   return {
-  //     title: params ? `${params.name.first} ${params.name.last}` : 'Player Details',
-  //   }
-  // };
-
   capitalizeFirstLetter = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };

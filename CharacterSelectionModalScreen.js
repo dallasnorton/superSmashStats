@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Container, Button, Title, Footer, FooterTab } from "native-base";
+import { connect } from "react-redux";
 import CharacterList from "./CharacterList";
 import CharacterSelectionHeader from "./CharacterSelectionHeader";
 import SearchBar from "react-native-search-bar";
@@ -70,7 +71,7 @@ class SubmitButton extends React.Component {
     return (
       <Footer>
         <FooterTab>
-          <Button full primary>
+          <Button full primary onPress={this.props.onSubmit}>
             <Title style={{ color: "#fff" }}>Submit</Title>
           </Button>
         </FooterTab>
@@ -79,7 +80,7 @@ class SubmitButton extends React.Component {
   }
 }
 
-export default class CharacterSelectionModalScreen extends React.Component {
+class CharacterSelectionModalScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -112,6 +113,14 @@ export default class CharacterSelectionModalScreen extends React.Component {
     this.setState({ characterList: smashCharacters });
   };
 
+  addWin = () => {
+    const { params } = this.props.navigation.state;
+    const name = params ? params.name : null;
+
+    this.props.addWin(name, this.state.characterSelected);
+    this.props.navigation.goBack();
+  };
+
   render() {
     return (
       <Container>
@@ -131,7 +140,9 @@ export default class CharacterSelectionModalScreen extends React.Component {
           onSelection={this.onCharacterSelected}
           selectedCharacter={this.state.characterSelected}
         />
-        {this.state.characterSelected ? <SubmitButton /> : null}
+        {this.state.characterSelected ? (
+          <SubmitButton onSubmit={this.addWin} />
+        ) : null}
       </Container>
     );
   }
@@ -145,3 +156,17 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+const mapDispatchToProps = (dispatch, getState) => ({
+  addWin: (name, selectedCharacter) => {
+    dispatch({
+      type: "ADD_WIN",
+      payload: {
+        userName: name.first + name.last,
+        characterName: selectedCharacter
+      }
+    });
+  }
+});
+
+export default connect(null, mapDispatchToProps)(CharacterSelectionModalScreen);

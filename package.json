@@ -29,6 +29,8 @@
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-native-search-bar": "^3.4.0",
-    "react-navigation": "^1.5.2"
+    "react-navigation": "^1.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
   }
 }

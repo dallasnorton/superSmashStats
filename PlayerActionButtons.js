@@ -21,8 +21,7 @@ export default class Player extends React.Component {
         <Button
           onPress={() =>
             this.props.navigation.navigate("CharacterSelectionModal", {
-              name: this.props.name,
-              avatar: this.props.avatar
+              name: this.props.name
             })
           }
         >
