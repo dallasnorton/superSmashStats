@@ -1,14 +1,35 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { Thumbnail, Container, Title, Icon, Text } from "native-base";
+import {
+  Thumbnail,
+  Container,
+  Title,
+  Icon,
+  Text,
+  Content,
+  Separator,
+  ListItem
+} from "native-base";
 import { connect } from "react-redux";
+import { selectWinsForUser } from "./redux/selectors";
 // import Camera from 'react-native-camera';
 
 class WinCount extends React.Component {
   render() {
     return (
       <Container>
-        <Text>Number of Wins: {this.props.count}</Text>
+        <Content>
+          <Separator bordered>
+            <Text>Wins</Text>
+          </Separator>
+          {Object.keys(this.props.wins).map(character => (
+            <ListItem key={character}>
+              <Text>
+                {character}: {this.props.wins[character]}
+              </Text>
+            </ListItem>
+          ))}
+        </Content>
       </Container>
     );
   }
@@ -49,7 +70,15 @@ class AvatarPlaceHolder extends React.Component {
 }
 
 class PlayerProfile extends React.Component {
+  capitalizeFirstLetter = string => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   render() {
+    const fullName = `${this.capitalizeFirstLetter(
+      this.props.name.first
+    )} ${this.capitalizeFirstLetter(this.props.name.last)}`;
+
     return (
       <Container style={styles.horizontalCenter}>
         <Container style={styles.thumbnailSpacing}>
@@ -59,8 +88,8 @@ class PlayerProfile extends React.Component {
             <AvatarPlaceHolder />
           )}
         </Container>
-        <Title>{this.props.name}</Title>
-        <WinCount count={this.props.winCount ? this.props.winCount : 0} />
+        <Title>{fullName}</Title>
+        {this.props.wins ? <WinCount wins={this.props.wins} /> : null}
       </Container>
     );
   }
@@ -101,4 +130,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(({ winsByUser }) => ({ winsByUser }))(PlayerProfile);
+export default connect((state, props) => ({
+  wins: selectWinsForUser(state, props.name.first + props.name.last)
+}))(PlayerProfile);

@@ -50,6 +50,7 @@ class NewPlayerForm extends React.Component {
           <Item floatingLabel>
             <Label>First Name</Label>
             <Input
+              autoFocus
               onChangeText={text =>
                 this.setState({ name: { ...this.state.name, first: text } })
               }

@@ -3,6 +3,7 @@ import { StyleSheet, FlatList } from "react-native";
 import { Container, Header, List, Title, Body } from "native-base";
 import Player from "./Player";
 import { connect } from "react-redux";
+import { selectUsers } from "./redux/selectors";
 
 class Players extends React.Component {
   render() {
@@ -36,4 +37,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(({ users }) => ({ users }))(Players);
+export default connect(state => ({
+  users: selectUsers(state)
+}))(Players);

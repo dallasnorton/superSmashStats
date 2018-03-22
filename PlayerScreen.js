@@ -23,11 +23,6 @@ export default class PlayerScreen extends React.Component {
     const { params } = this.props.navigation.state;
     const name = params ? params.name : null;
     const avatar = params ? params.avatar : null;
-    const fullName = params
-      ? `${this.capitalizeFirstLetter(name.first)} ${this.capitalizeFirstLetter(
-          name.last
-        )}`
-      : "Player Details";
 
     return (
       <Container>
@@ -40,7 +35,7 @@ export default class PlayerScreen extends React.Component {
           </Body>
           <Right />
         </Header>
-        <PlayerProfile avatar={avatar} name={fullName} />
+        <PlayerProfile avatar={avatar} name={name} />
       </Container>
     );
   }
