@@ -31,6 +31,7 @@
     "react-native-search-bar": "^3.4.0",
     "react-navigation": "^1.5.2",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-persist": "^5.9.1"
   }
 }

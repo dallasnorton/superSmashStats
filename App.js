@@ -4,10 +4,10 @@ import HomeScreen from "./HomeScreen";
 import PlayerScreen from "./PlayerScreen";
 import CreateUserScreen from "./CreateUserScreen";
 import CharacterSelectionModalScreen from "./CharacterSelectionModalScreen";
-
+import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { connect } from "react-redux";
-import store from "./redux/store";
+import { store, persistor } from "./redux/store";
 
 const MainStack = StackNavigator(
   {
@@ -36,7 +36,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <RootStack />
+        <PersistGate loading={null} persistor={persistor}>
+          <RootStack />
+        </PersistGate>
       </Provider>
     );
   }
