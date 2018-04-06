@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 const initialState = {
   users: [],
   winsByUser: {}
@@ -38,4 +36,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default combineReducers({ app: rootReducer });
+export default rootReducer;
